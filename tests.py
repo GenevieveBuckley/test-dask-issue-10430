@@ -23,7 +23,8 @@ def test_pandas(tmp_path, df):
 
 
 def test_long_pandas(tmp_path, df):
-    save_filename = os.path.join(tmp_path, ('a' * 256) + ".csv")
+    file_path = tmp_path / ('a' * 250)  / "bbbbbbbbbbbbbbbbbb.csv"
+    save_filename = str(file_path)
     assert len(save_filename) > 256
     df.to_csv(save_filename, encoding='utf-8')
     assert os.path.exists(save_filename)
@@ -32,7 +33,8 @@ def test_long_pandas(tmp_path, df):
 
 
 def test_long_pandas_fix(tmp_path, df):
-    save_filename = os.path.join(r"\\?\\" + str(tmp_path), ('a' * 256) + ".csv")
+    file_path = tmp_path / ('a' * 250)  / "bbbbbbbbbbbbbbbbbb.csv"
+    save_filename = fr'\\?\\{file_path}'
     assert len(save_filename) > 256
     df.to_csv(save_filename, encoding='utf-8')
     assert os.path.exists(save_filename)
@@ -50,7 +52,8 @@ def test_dask(tmp_path, df):
 
 
 def test_long_dask(tmp_path, df):
-    save_filename = os.path.join(tmp_path, ('a' * 256) + ".csv")
+    file_path = tmp_path / ('a' * 250)  / "bbbbbbbbbbbbbbbbbb.csv"
+    save_filename = str(file_path)
     assert len(save_filename) > 256
     df.to_csv(save_filename, encoding='utf-8')
     assert os.path.exists(save_filename)
@@ -60,7 +63,8 @@ def test_long_dask(tmp_path, df):
 
 
 def test_long_dask_fix(tmp_path, df):
-    save_filename = os.path.join(r"\\?\\" + str(tmp_path), ('a' * 256) + ".csv")
+    file_path = tmp_path / ('a' * 250)  / "bbbbbbbbbbbbbbbbbb.csv"
+    save_filename = fr'\\?\\{file_path}'
     assert len(save_filename) > 256
     df.to_csv(save_filename, encoding='utf-8')
     assert os.path.exists(save_filename)
