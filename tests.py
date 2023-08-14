@@ -23,7 +23,9 @@ def test_pandas(tmp_path, df):
 
 
 def test_long_pandas(tmp_path, df):
-    file_path = tmp_path / ('a' * 250)  / "bbbbbbbbbbbbbbbbbb.csv"
+    file_dir = tmp_path / ('a' * 250)
+    os.mkdir(file_dir)
+    file_path = file_dir / "bbbbbbbbbbbbbbbbbb.csv"
     save_filename = str(file_path)
     assert len(save_filename) > 256
     df.to_csv(save_filename, encoding='utf-8')
@@ -33,7 +35,9 @@ def test_long_pandas(tmp_path, df):
 
 
 def test_long_pandas_fix(tmp_path, df):
-    file_path = tmp_path / ('a' * 250)  / "bbbbbbbbbbbbbbbbbb.csv"
+    file_dir = tmp_path / ('a' * 250)
+    os.mkdir(file_dir)
+    file_path = file_dir / "bbbbbbbbbbbbbbbbbb.csv"
     save_filename = fr'\\?\\{file_path}'
     assert len(save_filename) > 256
     df.to_csv(save_filename, encoding='utf-8')
@@ -52,7 +56,9 @@ def test_dask(tmp_path, df):
 
 
 def test_long_dask(tmp_path, df):
-    file_path = tmp_path / ('a' * 250)  / "bbbbbbbbbbbbbbbbbb.csv"
+    file_dir = tmp_path / ('a' * 250)
+    os.mkdir(file_dir)
+    file_path = file_dir / "bbbbbbbbbbbbbbbbbb.csv"
     save_filename = str(file_path)
     assert len(save_filename) > 256
     df.to_csv(save_filename, encoding='utf-8')
@@ -63,7 +69,9 @@ def test_long_dask(tmp_path, df):
 
 
 def test_long_dask_fix(tmp_path, df):
-    file_path = tmp_path / ('a' * 250)  / "bbbbbbbbbbbbbbbbbb.csv"
+    file_dir = tmp_path / ('a' * 250)
+    os.mkdir(file_dir)
+    file_path = file_dir / "bbbbbbbbbbbbbbbbbb.csv"
     save_filename = fr'\\?\\{file_path}'
     assert len(save_filename) > 256
     df.to_csv(save_filename, encoding='utf-8')
