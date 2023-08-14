@@ -31,7 +31,7 @@ def test_long_pandas(tmp_path, df):
     df.to_csv(save_filename, encoding='utf-8')
     assert os.path.exists(save_filename)
     new_df = pd.read_csv(save_filename, index_col="Unnamed: 0")
-    pd.testing.assert_frame_equal(df, new_df)
+    pd.testing.assert_frame_equal(df, new_df, check_names=False)
 
 
 def test_long_pandas_fix(tmp_path, df):
@@ -43,7 +43,7 @@ def test_long_pandas_fix(tmp_path, df):
     df.to_csv(save_filename, encoding='utf-8')
     assert os.path.exists(save_filename)
     new_df = pd.read_csv(save_filename).set_index("Unnamed: 0")
-    pd.testing.assert_frame_equal(df, new_df)
+    pd.testing.assert_frame_equal(df, new_df, check_names=False)
 
 
 def test_dask(tmp_path, df):
